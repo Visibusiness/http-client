@@ -1,7 +1,7 @@
 Name: Visanescu Bogdan-Emilian  
 Group: 323CA
 
-# PCOM Assignment 3 - HTTP Client
+# HTTP Client
 
 This project represents a C++ client for interacting with a REST server, allowing management of users, movies, and movie collections. The application communicates with the server using HTTP protocols and JSON data.
 
