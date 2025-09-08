@@ -1,102 +1,101 @@
-Nume: Visanescu Bogdan-Emilian  
-Grupa: 323CA
+Name: Visanescu Bogdan-Emilian  
+Group: 323CA
 
-# PCOM Tema 3 - Client HTTP
+# PCOM Assignment 3 - HTTP Client
 
-Acest proiect reprezinta un client C++ pentru interactiunea cu un server REST, permitand gestionarea utilizatorilor, filmelor si colectiilor de filme. Aplicatia comunica cu serverul folosind protocoale HTTP si date in format JSON.
+This project represents a C++ client for interacting with a REST server, allowing management of users, movies, and movie collections. The application communicates with the server using HTTP protocols and JSON data.
 
-> **Nota:** API-ul de comunicare socket/HTTP implementat in `helper.cpp` este partial preluat si adaptat din materialele de laborator PCOM.
+> **Note:** The socket/HTTP communication API implemented in `helper.cpp` is partially adapted from PCOM lab materials.
 
 ---
 
-## Structura proiectului
+## Project Structure
 
 - **client.cpp**  
-  Fisierul principal al aplicatiei. Contine functia `main()` si toate functiile pentru interactiunea cu serverul: autentificare, gestionare utilizatori, filme si colectii.  
+  The main application file. Contains the `main()` function and all functions for interacting with the server: authentication, managing users, movies, and collections.  
 - **client.hpp**  
-  Contine macrouri pentru URL-uri, headere HTTP si utilitare pentru a simplifica codul din `client.cpp`.
+  Contains macros for URLs, HTTP headers, and utilities to simplify the code in `client.cpp`.
 - **helper.hpp / helper.cpp**  
-  Functii ajutatoare pentru constructia si parsarea requesturilor si raspunsurilor HTTP, precum si pentru comunicarea cu serverul prin socket.
+  Helper functions for building and parsing HTTP requests and responses, as well as for socket communication with the server.
 - **nlohmann/json.hpp**  
-  Biblioteca externa pentru manipularea obiectelor JSON in C++. Este folosita pentru a construi si interpreta datele trimise/primite de la server.
+  External library for handling JSON objects in C++. Used to construct and interpret data sent to/from the server.
 
 ---
 
-## Functionalitati detaliate
+## Detailed Features
 
-Aplicatia permite urmatoarele operatii, fiecare fiind accesibila printr-o comanda introdusa de la tastatura:
+The application allows the following operations, each accessible via a command entered from the keyboard:
 
-### Administrare utilizatori (admin)
-- **login_admin** – Autentifica un administrator.
-- **add_user** – Adauga un utilizator nou (doar ca admin).
-- **get_users** – Listeaza toti utilizatorii existenti.
-- **delete_user** – Sterge un utilizator dupa username.
-- **logout_admin** – Delogheaza administratorul curent.
+### User Administration (admin)
+- **login_admin** – Authenticates an administrator.
+- **add_user** – Adds a new user (admin only).
+- **get_users** – Lists all existing users.
+- **delete_user** – Deletes a user by username.
+- **logout_admin** – Logs out the current administrator.
 
-### Utilizator obisnuit
-- **login** – Autentifica un utilizator.
-- **logout** – Delogheaza utilizatorul curent.
-- **get_access** – Obtine token de acces la biblioteca de filme.
+### Regular User
+- **login** – Authenticates a user.
+- **logout** – Logs out the current user.
+- **get_access** – Obtains an access token for the movie library.
 
-### Filme
-- **add_movie** – Adauga un film nou.
-- **get_movies** – Listeaza toate filmele disponibile.
-- **get_movie** – Afiseaza detalii despre un film dupa ID.
-- **delete_movie** – Sterge un film dupa ID.
-- **update_movie** – Actualizeaza detaliile unui film.
+### Movies
+- **add_movie** – Adds a new movie.
+- **get_movies** – Lists all available movies.
+- **get_movie** – Displays details of a movie by ID.
+- **delete_movie** – Deletes a movie by ID.
+- **update_movie** – Updates the details of a movie.
 
-### Colectii de filme
-- **add_collection** – Creeaza o colectie noua de filme.
-- **get_collections** – Listeaza toate colectiile disponibile.
-- **get_collection** – Afiseaza detalii despre o colectie dupa ID.
-- **add_movie_to_collection** – Adauga un film intr-o colectie.
-- **delete_collection** – Sterge o colectie dupa ID.
-- **delete_movie_from_collection** – Sterge un film dintr-o colectie.
-
----
-
-   **Comenzi disponibile:**
-   - `login_admin`
-   - `add_user`
-   - `get_users`
-   - `login`
-   - `logout_admin`
-   - `logout`
-   - `delete_user`
-   - `get_access`
-   - `add_movie`
-   - `get_movies`
-   - `get_movie`
-   - `delete_movie`
-   - `update_movie`
-   - `add_collection`
-   - `get_collections`
-   - `get_collection`
-   - `add_movie_to_collection`
-   - `delete_collection`
-   - `delete_movie_from_collection`
-   - `exit` – Inchide aplicatia.
+### Movie Collections
+- **add_collection** – Creates a new movie collection.
+- **get_collections** – Lists all available collections.
+- **get_collection** – Displays details of a collection by ID.
+- **add_movie_to_collection** – Adds a movie to a collection.
+- **delete_collection** – Deletes a collection by ID.
+- **delete_movie_from_collection** – Deletes a movie from a collection.
 
 ---
 
-## Detalii tehnice si observatii
-
-- **Comunicare:**  
-  Clientul foloseste socket-uri TCP pentru a comunica cu serverul, trimitand requesturi HTTP manual construite si primind raspunsuri pe care le parseaza.
-- **Date:**  
-  Toate datele trimise si primite sunt in format JSON.
-- **Autentificare:**  
-  Se folosesc cookie-uri pentru sesiune si token JWT pentru acces la operatii privilegiate.
-- **Erori:**  
-  Orice raspuns de eroare de la server este afisat explicit in consola.
-- **Extensibilitate:**  
-  Codul este modularizat cu functii separate pentru fiecare operatie si macrouri pentru a evita repetitia.
+**Available Commands:**
+- `login_admin`
+- `add_user`
+- `get_users`
+- `login`
+- `logout_admin`
+- `logout`
+- `delete_user`
+- `get_access`
+- `add_movie`
+- `get_movies`
+- `get_movie`
+- `delete_movie`
+- `update_movie`
+- `add_collection`
+- `get_collections`
+- `get_collection`
+- `add_movie_to_collection`
+- `delete_collection`
+- `delete_movie_from_collection`
+- `exit` – Closes the application.
 
 ---
 
-## Dependente
+## Technical Details and Notes
 
-- [nlohmann/json](https://github.com/nlohmann/json) – pentru manipularea JSON in C++ (inclus ca header).
-- Un server compatibil cu API-ul specificat (rulat separat).
+- **Communication:**  
+  The client uses TCP sockets to communicate with the server, sending manually constructed HTTP requests and parsing the responses.
+- **Data:**  
+  All sent and received data is in JSON format.
+- **Authentication:**  
+  Cookies are used for session management and JWT tokens for privileged operations.
+- **Errors:**  
+  Any server error response is explicitly displayed in the console.
+- **Extensibility:**  
+  The code is modularized with separate functions for each operation and macros to avoid repetition.
+
 ---
-*Tema pentru Protocoale de Comunicare, 2025 – Universitatea Politehnica Bucuresti*
+
+## Dependencies
+
+- [nlohmann/json](https://github.com/nlohmann/json) – for JSON handling in C++ (included as a header).
+- A server compatible with the specified API (run separately).
+
